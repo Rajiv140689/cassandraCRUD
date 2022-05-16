@@ -1,0 +1,11 @@
+spring:
+  data:
+    cassandra:
+      keyspace-name: store
+      port: 9042
+      contact-points: 127.0.0.1
+      schema-action: create_if_not_exists
+      local-datacenter: datacenter1
+
+server:
+  port: 8080
