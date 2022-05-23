@@ -13,7 +13,6 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @NoArgsConstructor
 @Table(value = "shopping_cart")
 public class ShoppingCart {
-
     @PrimaryKey
     @Column(value = "userid")
     private String userId;

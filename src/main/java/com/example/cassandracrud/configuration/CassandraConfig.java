@@ -20,6 +20,10 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     @Value("${spring.data.cassandra.contact-points}")
     private String contactPoints;
 
+    @Value("${spring.data.cassandra.cluster}")
+    private String clusterName;
+
+    //Not available in AbstractCassandraConfiguration
     @Value("${spring.data.cassandra.local-datacenter}")
     private String localDatacenter;
 
@@ -40,7 +44,30 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     }
 
     @Override
-    protected String getLocalDataCenter() {
-        return localDatacenter;
+    public String getClusterName() {
+        return clusterName;
     }
+
+    @Override
+    public SchemaAction getSchemaAction() {
+        return SchemaAction.CREATE_IF_NOT_EXISTS;
+    }
+
+//    @Override
+//    protected String getLocalDataCenter() {
+//        return localDatacenter;
+//    }
+
+//    Available in 2.0.5.RELEASE
+//    @Bean
+//    public CassandraClusterFactoryBean cluster() {
+//        CassandraClusterFactoryBean cluster = new CassandraClusterFactoryBean();
+//        //PlainTextAuthProvider sap = new PlainTextAuthProvider(username, passsword);
+//        cluster.setContactPoints(contactPoints);
+//        cluster.setPort(port);
+//        cluster.setClusterName(clusterName);
+//        //cluster.setAuthProvider(sap);
+//        cluster.setJmxReportingEnabled(false);
+//        return cluster;
+//    }
 }
